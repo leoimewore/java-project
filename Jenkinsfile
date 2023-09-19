@@ -16,8 +16,8 @@ pipeline {
     
     stage('Maven Build') {
      steps { 
-          
-          sh "mvn clean package && cp target/*.jar . "
+          sh "if [ -f \"pom.xml\" ];then mvn -B -f pom.xml clean package && cp target/*.jar .;else echo \"This is not a Java Project\";fi"
+          // sh "mvn clean package && cp target/*.jar . "
      }
     }
      
